@@ -31,7 +31,7 @@ public class ShippingService {
 
         validateData(shippingDto);
 
-        calculateDiscount(shippingDto);
+        shippingDto = calculateDiscount(shippingDto);
 
         shippingRepository.save(mapperToModel(shippingDto));
         return shippingDto;
@@ -41,7 +41,7 @@ public class ShippingService {
 
         validateData(shippingDto);
 
-        calculateDiscount(shippingDto);
+        shippingDto = calculateDiscount(shippingDto);
 
         shippingRepository.save(mapperToModel(shippingDto));
         return shippingDto;
@@ -132,6 +132,7 @@ public class ShippingService {
         }
 
         shippingDto.setFinalPrice(shippingDto.getPriceShipping() - discount);
+        shippingDto.setDiscountApplied(String.valueOf(discount));
         return shippingDto;
     }
 }
